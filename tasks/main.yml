@@ -18,6 +18,13 @@
     remote_src: yes
   when: not teleport_bin.stat.exists
 
+- name: Create temporary directory
+  command: >
+    mkdir /tmp/teleport
+    creates=/tmp/teleport
+  become: yes
+  when: not teleport_bin.stat.exists
+
 - name: Install teleport.
   command: >
     ./install
