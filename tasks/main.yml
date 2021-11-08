@@ -19,9 +19,9 @@
   when: not teleport_bin.stat.exists
 
 - name: Create temporary directory
-  command: >
-    mkdir /tmp/teleport
-    creates=/tmp/teleport
+  file:
+    path: /tmp/teleport
+    state: directory
   become: yes
   when: not teleport_bin.stat.exists
 
