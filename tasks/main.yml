@@ -18,7 +18,15 @@
     remote_src: yes
   when: not teleport_bin.stat.exists
 
-- name: Copy licence file
+- name: Create license file directory
+  file:
+    path: /var/lib/teleport
+    state: directory
+    owner: "root"
+    group: "root"
+  become: yes
+
+- name: Copy license file directory
   template:
     src: "{{ teleport_license_file }}"
     dest:  /var/lib/teleport/license.pem
