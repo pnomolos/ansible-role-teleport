@@ -18,6 +18,15 @@
     remote_src: yes
   when: not teleport_bin.stat.exists
 
+- name: Copy licence file
+  template:
+    src: "{{ teleport_licence_file }}"
+    dest:  /var/lib/teleport/license.pem
+    owner: "root"
+    group: "root"
+    mode: 0600
+    when: teleport_licence_file is defined and teleport_auth_enabled is true
+
 - name: Create temporary directory
   file:
     path: /tmp/teleport
@@ -39,15 +48,6 @@
     owner: "root"
     group: "root"
     mode: 0600
-
-- name: Copy licence file
-  template:
-    src: "{{ teleport_licence_file }}"
-    dest:  /var/lib/teleport/license.pem
-    owner: "root"
-    group: "root"
-    mode: 0600
-    when: teleport_licence_file is defined and teleport_auth_enabled is true
 
 - include_tasks: configure-Systemd.yml
   when: ansible_service_mgr == 'systemd'
