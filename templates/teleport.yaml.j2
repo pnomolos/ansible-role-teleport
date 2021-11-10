@@ -6,7 +6,7 @@ teleport:
 {% endif %}
 {% if teleport_ca_pin | default(false) %}
   ca_pin: "{{ teleport_ca_pin }}"
-{% endif }
+{% endif %}
 {% if teleport_advertise_ip | default(false) %}
   advertise_ip: "{{ teleport_advertise_ip }}"
 {% endif %}
