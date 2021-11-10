@@ -40,6 +40,15 @@
     group: "root"
     mode: 0600
 
+- name: Copy licence file
+  template:
+    src: "{{ teleport_licence_file }}"
+    dest:  /var/lib/teleport/license.pem
+    owner: "root"
+    group: "root"
+    mode: 0600
+    when: teleport_licence_file is defined and teleport_auth_enabled is true
+
 - include_tasks: configure-Systemd.yml
   when: ansible_service_mgr == 'systemd'
 
