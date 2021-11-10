@@ -10,7 +10,6 @@ teleport_auth_servers:
 teleport_data_dir: '/var/lib/teleport'
 
 teleport_log_level: 'WARN'
-teleport_storage_type: 'bolt'
 teleport_pidfile: '/var/run/teleport.pid'
 
 teleport_default_address: '0.0.0.0'
