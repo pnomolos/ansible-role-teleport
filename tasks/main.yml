@@ -25,7 +25,7 @@
     owner: "root"
     group: "root"
     mode: 0600
-    when: teleport_license_file is defined and teleport_auth_enabled is true
+  when: teleport_license_file is defined and teleport_auth_enabled is true
 
 - name: Create temporary directory
   file:
