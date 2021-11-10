@@ -4,6 +4,9 @@ teleport:
 {% if teleport_auth_token %}
   auth_token: "{{ teleport_auth_token }}"
 {% endif %}
+{% if teleport_ca_pin | default(false) %}
+  ca_pin: "{{ teleport_ca_pin }}"
+{% endif }
 {% if teleport_advertise_ip | default(false) %}
   advertise_ip: "{{ teleport_advertise_ip }}"
 {% endif %}
