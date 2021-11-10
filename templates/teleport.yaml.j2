@@ -20,8 +20,6 @@ teleport:
   log:
     output: syslog
     severity: {{ teleport_log_level }}
-  storage:
-    type: {{ teleport_storage_type }}
   data_dir: {{ teleport_data_dir }}
 auth_service:
 {% if teleport_auth_enabled | default(false) %}
