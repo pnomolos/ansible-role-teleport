@@ -16,6 +16,8 @@ teleport_default_address: '0.0.0.0'
 teleport_license_file: ''
 teleport_ca_pin: ''
 
+teleport_clean_cache: false
+
 # auth service
 teleport_auth_enabled: true
 teleport_auth_listen_address: '{{ teleport_default_address | ipwrap }}:3025'

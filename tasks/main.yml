@@ -57,6 +57,12 @@
     group: "root"
     mode: 0600
 
+- name: Clean teleport cached items
+  shell: /bin/rm -rf /var/lib/teleport/* /var/lib/teleport/.*
+  become: yes
+  when: teleport_clean_cache is true
+
+
 - include_tasks: configure-Systemd.yml
   when: ansible_service_mgr == 'systemd'
 
