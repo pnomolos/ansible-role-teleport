@@ -58,7 +58,9 @@
     mode: 0600
 
 - name: Clean teleport cached items
-  shell: /bin/rm -rf /var/lib/teleport/* /var/lib/teleport/.* 2> /dev/null
+  file:
+    path: /var/lib/teleport
+    state: abstent
   become: yes
   when: teleport_clean_cache is true
 
