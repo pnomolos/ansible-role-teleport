@@ -1,6 +1,6 @@
 namespace: pnomolos
 name: teleport
-version: 0.1.6
+version: 0.1.7
 readme: README.md
 authors: woohgit, CFSworks, pnomolos
 repository: https://github.com/pnomolos/ansible-role-teleport
