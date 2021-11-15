@@ -60,7 +60,7 @@
 - name: Clean teleport cached items
   file:
     path: /var/lib/teleport
-    state: abstent
+    state: absent
   become: yes
   when: teleport_clean_cache is true
 
