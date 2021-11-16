@@ -17,6 +17,7 @@ teleport_license_file: ''
 teleport_ca_pin: ''
 
 teleport_clean_cache: false
+teleport_clean_binary: false
 
 # auth service
 teleport_auth_enabled: true

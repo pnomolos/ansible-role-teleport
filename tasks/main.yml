@@ -6,6 +6,16 @@
   stat: "path=/usr/local/bin/teleport"
   register: teleport_bin
 
+- name: Uninstall teleport
+  file:
+    path: /usr/local/bin/teleport
+    state: absent
+  when: teleport_bin.stat.exists and teleport_clean_binary is true
+
+- name: Re-check if teleport is installed.
+  stat: "path=/usr/local/bin/teleport"
+  register: teleport_bin
+
 - name: Install make.
   package:
     name: make
