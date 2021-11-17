@@ -57,6 +57,7 @@
     ./install
     chdir=/tmp/teleport
   become: yes
+  register: teleport_installed
   when: not teleport_bin.stat.exists
 
 - name: Create teleport config.

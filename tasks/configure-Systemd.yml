@@ -12,3 +12,8 @@
   shell: systemctl daemon-reload
   become: yes
   when: service_installed.changed
+
+- name: restart teleport
+  shell: systemctl restart teleport.service
+  become: yes
+  when: teleport_installed.changed

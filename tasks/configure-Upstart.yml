@@ -12,3 +12,8 @@
   shell: initctl reload-configuration
   become: yes
   when: service_installed.changed
+
+- name: restart teleport
+  shell: restart teleport
+  become: yes
+  when: teleport_installed.changed

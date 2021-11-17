@@ -6,3 +6,8 @@
     owner: "root"
     group: "root"
     mode: 0744
+
+- name: restart teleport
+  shell: /etc/init.d/teleport restart
+  become: yes
+  when: teleport_installed.changed
