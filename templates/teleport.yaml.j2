@@ -35,7 +35,7 @@ auth_service:
         - "{{ teleport_u2f_app_id }}"
 {% endif %}
   oidc_connectors: []
-  cluster_name: {{ teleport_auth_cluster_name }}
+  cluster_name: "{{ teleport_auth_cluster_name }}"
 {% if teleport_auth_trusted_clusters|length > 0 %}
   trusted_clusters:
 {% for cluster_ca in teleport_auth_trusted_clusters %}
