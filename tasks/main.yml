@@ -21,12 +21,19 @@
     name: make
     state: present
 
-- name: Unarchive teleport.
+- name: Unarchive teleport from remote
   ansible.builtin.unarchive:
     src: "{{ teleport_url }}"
     dest: /tmp
     remote_src: yes
-  when: not teleport_bin.stat.exists
+  when: not teleport_bin.stat.exists and not teleport_local_path is defined
+
+- name: Unarchive teleport from local
+  ansible.builtin.unarchive:
+    src: "{{ teleport_local_path }}"
+    dest: /tmp
+    remote_src: no
+  when: not teleport_bin.stat.exists and teleport_local_path is defined
 
 - name: Create license file directory
   file:
@@ -42,7 +49,7 @@
     dest:  /var/lib/teleport/license.pem
     owner: "root"
     group: "root"
-    mode: 0600
+    mode: 0400
   when: teleport_license_file is defined and teleport_auth_enabled is true
 
 - name: Create temporary directory
@@ -74,7 +81,6 @@
     state: absent
   become: yes
   when: teleport_clean_cache is true
-
 
 - include_tasks: configure-Systemd.yml
   when: ansible_service_mgr == 'systemd'
