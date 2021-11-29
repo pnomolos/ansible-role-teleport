@@ -21,17 +21,25 @@
     name: make
     state: present
 
+- name: Create temporary directory
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: teleport
+  - register: teleport_temp
+
 - name: Unarchive teleport from remote
   ansible.builtin.unarchive:
     src: "{{ teleport_url }}"
-    dest: /tmp
+    dest: "{{ teleport_temp.path }}"
+    extra_opts: [--strip-components=1]
     remote_src: yes
   when: not teleport_bin.stat.exists and not teleport_local_path is defined
 
 - name: Unarchive teleport from local
   ansible.builtin.unarchive:
     src: "{{ teleport_local_path }}"
-    dest: /tmp
+    dest: "{{ teleport_temp.path }}"
+    extra_opts: [--strip-components=1]
     remote_src: no
   when: not teleport_bin.stat.exists and teleport_local_path is defined
 
@@ -42,8 +50,9 @@
     owner: "root"
     group: "root"
   become: yes
+  when: teleport_license_file is defined and teleport_auth_enabled is true
 
-- name: Copy license file directory
+- name: Copy license file
   template:
     src: "{{ teleport_license_file }}"
     dest:  /var/lib/teleport/license.pem
