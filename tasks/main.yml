@@ -25,7 +25,7 @@
   ansible.builtin.tempfile:
     state: directory
     suffix: teleport
-  - register: teleport_temp
+  register: teleport_temp
 
 - name: Unarchive teleport from remote
   ansible.builtin.unarchive:
