@@ -61,20 +61,18 @@
     mode: 0400
   when: teleport_license_file is defined and teleport_auth_enabled is true
 
-- name: Create temporary directory
-  file:
-    path: /tmp/teleport
-    state: directory
-  become: yes
-  when: not teleport_bin.stat.exists
-
 - name: Install teleport.
-  command: >
-    ./install
-    chdir=/tmp/teleport
+  ansible.builtin.command: ./install
+  args:
+    chdir: "{{ teleport_temp.path|quote }}"
   become: yes
   register: teleport_installed
   when: not teleport_bin.stat.exists
+
+- name: Clean temporary directory
+  file:
+    path: {{ teleport_temp.path }}
+    state: absent
 
 - name: Create teleport config.
   template:
