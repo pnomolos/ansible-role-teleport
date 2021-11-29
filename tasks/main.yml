@@ -71,7 +71,7 @@
 
 - name: Clean temporary directory
   file:
-    path: {{ teleport_temp.path }}
+    path: "{{ teleport_temp.path }}"
     state: absent
 
 - name: Create teleport config.
