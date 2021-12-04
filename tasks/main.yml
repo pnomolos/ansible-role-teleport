@@ -73,7 +73,7 @@
   file:
     path: "{{ teleport_temp.path }}"
     state: absent
-  when: teleport_temp.path is defined and teleport_temp.path.stat.exists
+  when: teleport_temp.path
 
 - name: Create teleport config.
   template:
