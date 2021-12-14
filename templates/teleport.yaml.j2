@@ -64,11 +64,12 @@ ssh_service:
 {% if teleport_ssh_enabled | default(false) %}
   enabled: "yes"
   listen_addr: "{{ teleport_ssh_listen_address }}"
-  {% if teleport_ssh_labels|length > 0 %}
-  {% for (key,value) in teleport_ssh_labels.items() %}
+{% if teleport_ssh_labels|length > 0 %}
+  labels:
+{% for (key,value) in teleport_ssh_labels.items() %}
     {{ key }}: {{ value }}
-  {% endfor %}
-  {% endif %}
+{% endfor %}
+{% endif %}
 {% else %}
   enabled: "no"
 {% endif %}
