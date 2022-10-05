@@ -1,9 +1,10 @@
 galaxy_info:
-  author: Adam Papai
+  role_name: ansible_role_teleport
+  author: woohgit, CFSworks, pnomolos
   description: An Ansible role for installing Teleport cluster.
   company: "CloudBees Inc."
   license: "license (BSD, MIT)"
-  
+
   min_ansible_version: 2.4
 
   platforms:
@@ -28,7 +29,7 @@ galaxy_info:
     - name: Debian
       versions:
       - all
-  
+
   galaxy_tags:
     - ssh
     - cluster
