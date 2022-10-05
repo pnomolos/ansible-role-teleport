@@ -56,9 +56,6 @@ support is not yet official; use this at your own risk.)
 
 You probably want to have multiple nodes joined to our cluster. You can do that with temporary tokens or you can automate the process and use static tokens. The 3 well known roles - auth, proxy, node - can have 3 different tokens.
 
-    teleport_auth_trusted_clusters: []
-    teleport_auth_oidc_connectors: []
-
 
     teleport_ssh_enabled: true
 
